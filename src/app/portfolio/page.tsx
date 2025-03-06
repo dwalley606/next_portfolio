@@ -1,12 +1,10 @@
 // src/app/portfolio/page.tsx
 import Link from "next/link";
+import pool from "@/lib/db";
 
-export default function Portfolio() {
-  const projects = [
-    { id: "1", title: "Charlie_Foxtrot", description: "A Timcast-style app built with Next.js" },
-    { id: "2", title: "React Portfolio", description: "My original React SPA on Netlify" },
-    { id: "3", title: "Placeholder Project", description: "Coming soon..." },
-  ];
+export default async function Portfolio() {
+  const result = await pool.query("SELECT * FROM projects ORDER BY created_at DESC");
+  const projects = result.rows;
 
   return (
     <div className="container mx-auto py-12">
