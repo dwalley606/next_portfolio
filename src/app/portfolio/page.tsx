@@ -1,52 +1,62 @@
 // src/app/portfolio/page.tsx
-import Link from "next/link";
+import Image from "next/image";
 import pool from "@/lib/db";
 
 export default async function Portfolio() {
-  const result = await pool.query("SELECT * FROM projects ORDER BY created_at DESC");
+  const result = await pool.query("SELECT * FROM projects ORDER BY id ASC");
   const projects = result.rows;
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-900">My Portfolio</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
+    <div className="container max-w-5xl mx-auto py-16 px-4 bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col items-center">
+      <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text mb-12 text-center">
+        My Portfolio
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        {projects.map((project, index) => (
           <div
             key={project.id}
-            className="border rounded-lg p-6 bg-white shadow-md hover:shadow-lg transition-shadow"
+            className="group p-6 bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in flex flex-col border-t-2 border-blue-700/50"
+            style={{ animationDelay: `${index * 100}ms` }}
           >
             {/* Image from Supabase Storage */}
             {project.image_url ? (
-              <img
-                src={project.image_url}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
+              <div className="relative">
+                <Image
+                  src={project.image_url}
+                  alt={project.title}
+                  width={300}
+                  height={192}
+                  className="w-full h-48 object-cover rounded-md mb-4 hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-md"></div>
+              </div>
             ) : (
-              <div className="w-full h-48 bg-gray-200 rounded-md mb-4 flex items-center justify-center">
-                <span className="text-gray-500">No Image</span>
+              <div className="w-full h-48 bg-gray-700 rounded-md mb-4 flex items-center justify-center">
+                <span className="text-gray-400">No Image</span>
               </div>
             )}
 
             {/* Title */}
-            <h2 className="text-xl font-semibold mb-2 text-gray-800">{project.title}</h2>
+            <h2 className="text-2xl font-semibold text-blue-400 mb-2">{project.title}</h2>
 
             {/* Description */}
-            <p className="text-gray-600 mb-4">{project.description}</p>
+            <p className="text-gray-300 mb-4 flex-grow">{project.description}</p>
 
             {/* Tech Stack */}
             {project.tech_stack && (
-              <p className="text-sm text-gray-500 mb-3">
-                <span className="font-medium">Tech:</span>{" "}
-                {Array.isArray(project.tech_stack)
-                  ? project.tech_stack.join(", ")
-                  : project.tech_stack.toString().replace(/[{}]/g, "").split(",").join(", ")}
-              </p>
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="text-sm text-gray-400 font-medium">Tech:</span>
+                {(Array.isArray(project.tech_stack) ? project.tech_stack : project.tech_stack.toString().replace(/[{}]/g, "").split(",")).map((tech, idx) => (
+                  <span key={idx} className="px-2 py-1 bg-blue-700 text-white text-xs rounded-full">
+                    {tech.trim()}
+                  </span>
+                ))}
+              </div>
             )}
 
             {/* Created At */}
             {project.created_at && (
-              <p className="text-sm text-gray-400 mb-3">
+              <p className="text-sm text-gray-500 mb-3">
                 <span className="font-medium">Added:</span>{" "}
                 {new Date(project.created_at).toLocaleDateString("en-US", {
                   month: "long",
@@ -57,13 +67,13 @@ export default async function Portfolio() {
             )}
 
             {/* Links */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-wrap gap-4">
               {project.github_url && (
                 <a
                   href={project.github_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+                  className="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 >
                   GitHub
                 </a>
@@ -73,17 +83,11 @@ export default async function Portfolio() {
                   href={project.live_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+                  className="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
                 >
                   Live Site
                 </a>
               )}
-              <Link
-                href={`/portfolio/${project.id}`}
-                className="text-blue-500 hover:underline"
-              >
-                View Details (TBD)
-              </Link>
             </div>
           </div>
         ))}

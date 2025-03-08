@@ -31,15 +31,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="flex flex-col min-h-screen bg-gray-900 text-white">
-        <header className="bg-blue-700 text-white p-4 sticky top-0 shadow-md z-10">
+        <header className="bg-gray-800 text-white p-4 sticky top-0 shadow-md z-10">
           <nav className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            {/* Name and Photo */}
             <div className="flex items-center gap-4">
-              <Link href="/" className="text-2xl font-bold hover:text-blue-300 transition-colors">
+              <Link
+                href="/"
+                className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text hover:brightness-125 transition-all"
+              >
                 Daniel Walley
               </Link>
             </div>
-            {/* Navigation Links */}
             <Navigation />
           </nav>
         </header>
@@ -52,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center gap-2 hover:text-blue-300 transition-colors"
+                className="flex flex-col items-center gap-2 hover:text-blue-400 transition-colors"
               >
                 <Image
                   src={social.img}
