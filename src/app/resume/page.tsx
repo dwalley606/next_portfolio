@@ -4,18 +4,19 @@ export default function Resume() {
     {
       title: "Web Development",
       items: [
-        "Front-End: HTML5, CSS3, JavaScript (ES6+), React.js, Bootstrap, Material UI (MUI)",
-        "Back-End: Node.js, Express.js, RESTful APIs, GraphQL, MongoDB, PostgreSQL",
+        "Front-End: HTML5, CSS3, JavaScript (ES6+), TypeScript, React.js, Next.js, Tailwind CSS, Bootstrap, Material UI (MUI)",
+        "Back-End: Node.js, Express.js, Supabase (PostgreSQL), MongoDB, RESTful APIs, GraphQL (Apollo)",
         "Content Management Systems (CMS): AFPIMS, WordPress",
       ],
     },
     {
       title: "Programming & Tools",
       items: [
+        "Languages: JavaScript, TypeScript",
         "Version Control: Git, GitHub",
-        "Testing & Debugging: Test-Driven Development (TDD), Jest, Unit Testing",
-        "Frameworks & Libraries: React.js, Redux, Axios",
-        "Database Management: MongoDB, MySQL, PostgreSQL",
+        "Testing & Debugging: Test-Driven Development (TDD), Jest, Unit Testing, Code Reviews",
+        "Frameworks & Libraries: Next.js (App Router, Server Actions), React.js, Redux",
+        "Deployment: Vercel, Netlify",
       ],
     },
     {
@@ -23,7 +24,7 @@ export default function Resume() {
       items: [
         "UX/UI Principles",
         "Responsive Design & Mobile-First Development",
-        "Web Accessibility Standards (Section 508 Compliance, WCAG)",
+        "Web Accessibility Standards (Section 508 Compliance, WCAG 2.0)",
         "SEO Optimization",
       ],
     },
@@ -48,6 +49,7 @@ export default function Resume() {
       title: "Cloud & Hosting",
       items: [
         "AWS (S3) for Cloud Solutions",
+        "Vercel for Serverless Deployment",
         "Website Performance Optimization",
       ],
     },
