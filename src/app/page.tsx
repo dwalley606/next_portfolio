@@ -6,14 +6,14 @@ export default function Home() {
     <div className="container max-w-5xl mx-auto py-16 px-4 bg-gradient-to-b from-gray-900 to-gray-800">
       <div className="flex flex-col md:flex-row justify-center items-center gap-10">
         {/* Profile Picture */}
-        <div className="relative flex justify-center">
+        <div className="relative flex justify-center items-center w-full max-w-[400px] md:max-w-[450px]">
           <div className="absolute -inset-4 bg-blue-500/20 rounded-full blur-xl"></div>
           <Image
             src="/profilepic.jpg"
             alt="Daniel Walley"
-            width={400} // Matches your resized image
-            height={400} // Matches your resized image
-            className="relative w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] h-auto rounded-full object-cover border-4 border-blue-500 hover:scale-105 transition-all duration-300"
+            width={400} // Base size
+            height={400} // Base size
+            className="relative w-full h-auto rounded-full object-cover border-4 border-blue-500 hover:scale-105 transition-all duration-300"
           />
         </div>
         {/* Bio Text */}

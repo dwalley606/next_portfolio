@@ -2,9 +2,21 @@
 import Image from "next/image";
 import pool from "@/lib/db";
 
+// Define the Project type based on your Supabase table
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  image_url: string | null;
+  created_at: Date;
+  tech_stack: string[] | string; // Handles both array and string cases
+  github_url: string | null;
+  live_url: string | null;
+};
+
 export default async function Portfolio() {
   const result = await pool.query("SELECT * FROM projects ORDER BY id ASC");
-  const projects = result.rows;
+  const projects: Project[] = result.rows; // Type the result
 
   return (
     <div className="container max-w-5xl mx-auto py-16 px-4 bg-gradient-to-b from-gray-900 to-gray-800 flex flex-col items-center">
@@ -46,8 +58,14 @@ export default async function Portfolio() {
             {project.tech_stack && (
               <div className="flex flex-wrap gap-2 mb-3">
                 <span className="text-sm text-gray-400 font-medium">Tech:</span>
-                {(Array.isArray(project.tech_stack) ? project.tech_stack : project.tech_stack.toString().replace(/[{}]/g, "").split(",")).map((tech, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-blue-700 text-white text-xs rounded-full">
+                {(Array.isArray(project.tech_stack)
+                  ? project.tech_stack
+                  : project.tech_stack.toString().replace(/[{}]/g, "").split(",")
+                ).map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2 py-1 bg-blue-700 text-white text-xs rounded-full"
+                  >
                     {tech.trim()}
                   </span>
                 ))}
