@@ -61,7 +61,7 @@ export default function Resume() {
         Skills & Proficiencies
       </h1>
       <a
-        href="https://docs.google.com/document/d/1aVTk6CBUfy0o--AYVth0uzqauYulCLMt/edit?usp=sharing&ouid=101214151770995815319&rtpof=true&sd=true"
+        href="https://docs.google.com/document/d/1cOzoIcAjmXgb_LiCH1Hbkhg7WJKFGDrO/edit?usp=sharing&ouid=101214151770995815319&rtpof=true&sd=true"
         target="_blank"
         rel="noopener noreferrer"
         className="mb-10 px-8 py-4 bg-blue-600 text-white font-semibold rounded-md shadow-lg hover:bg-blue-700 transition-all duration-300"
